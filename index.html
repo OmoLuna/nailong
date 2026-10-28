@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000; /* 背景改成黑色，一般 GIF 看起来更舒服，你可以改成别的 */
+      overflow: hidden;
+    }
+
+    .gif-container img {
+      max-width: 100vw;
+      max-height: 100vh;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="gif-container">
+    < img src="bg.gif" alt="动画加载中" id="loadingGif">
+  </div>
+
+  <script>
+    // 获取图片元素
+    const gif = document.getElementById('loadingGif');
+
+    // 当 GIF 图片完全加载完毕后，开始计时
+    gif.onload = function() {
+      // 这里的 3000 代表 3000 毫秒（也就是 3 秒）
+      // 你可以把它改成 2000（2秒）或 5000（5秒）
+      setTimeout(function () {
+        window.location.href = "https://www.cuc.edu.cn"; 
+      }, 3000); 
+    };
+
+    // 备用方案：如果图片加载失败（比如网络太慢没加载出来），
+    // 也会在 5 秒后强制跳转，防止用户一直卡在这个页面。
+    setTimeout(function () {
+      if (window.location.href.indexOf("https://www.cuc.edu.cn") === -1) {
+        window.location.href = "https://www.cuc.edu.cn";
+      }
+    }, 5000); 
+  </script>
+
+</body>
+</html>
